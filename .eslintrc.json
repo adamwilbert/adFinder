@@ -1,0 +1,7 @@
+{
+    "extends": ["airbnb","videoamp", 
+    "videoamp/es5"],
+    "plugins": [
+        "import"
+    ]
+}
