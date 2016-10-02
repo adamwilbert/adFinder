@@ -31,8 +31,8 @@ const adElements = Array.prototype.slice.call(document.querySelectorAll("iframe"
                     }).map((el) => {
                         const rect = el.getBoundingClientRect();
                         const formattedEl = {
-                            width: Number(el.width || el.style.width),
-                            height: Number(el.height || el.style.height),
+                            width: Number(el.width),
+                            height: Number(el.height),
                             position: {
                                 x: rect.left,
                                 y: rect.top,
