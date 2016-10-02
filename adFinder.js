@@ -23,7 +23,8 @@ const adSizes = [
 ];
 
 
-
+// gets all elements with iframe tags, filters out hidden, display:none, and sizes
+// that don't match our ad sizes constant above.
 const adElements = Array.prototype.slice.call(document.querySelectorAll("iframe"))
                     .filter((el) => {
                         return el.style.visibility !== "hidden" && el.style.display !== "none" && adSizeCheck(el);
@@ -39,19 +40,25 @@ const adElements = Array.prototype.slice.call(document.querySelectorAll("iframe"
                         };
                         return formattedEl;
                     });
-
+// function to check whether or not a particular element contains the appropriate sizing based on our const
 function adSizeCheck(el) {
     return adSizes.some((adSize) => {
         return String(adSize.width) === el.width && String(adSize.height) === el.height;
     });
 }
 
-
+// function to log the response with appropriate formatting
 function logResponse(els) {
     const res = {
         location: window.location.href,
         advertisements: els,
     };
+    const firebaseURL = `https://adfinder-eba7a.firebaseio.com/ads/${Date()}.json`;
+    const request = new XMLHttpRequest();
+    request.open("PUT", firebaseURL, true);
+    request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    request.send(JSON.stringify(res));
+
     console.log(res);
 }
 
