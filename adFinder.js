@@ -41,9 +41,9 @@ const adElements = Array.prototype.slice.call(document.querySelectorAll("iframe"
                     });
 
 function adSizeCheck(el) {
-    return adSizes.filter((adSize) => {
+    return adSizes.some((adSize) => {
         return String(adSize.width) === el.width && String(adSize.height) === el.height;
-    }).length > 0;
+    });
 }
 
 
